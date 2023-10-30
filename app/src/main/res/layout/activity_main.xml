@@ -6,10 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/locateMeButton"
-        android:layout_width="wrap_content"
+    <!-- Mapa OpenStreetMap (MapView) -->
+    <org.osmdroid.views.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/buttonContainer" />
+
+    <!-- Box z przyciskami -->
+    <LinearLayout
+        android:id="@+id/buttonContainer"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lokalizuj mnie"
-        android:layout_centerInParent="true" />
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true">
+
+        <!-- Przycisk "Menu" -->
+        <ImageButton
+            android:id="@+id/menuButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/menu_icon" />
+
+        <!-- Przycisk "Lokalizuj mnie" -->
+        <Button
+            android:id="@+id/locateMeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lokalizuj mnie" />
+
+        <!-- Przycisk "Kompas" -->
+        <ImageButton
+            android:id="@+id/compassButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/compass_icon" />
+    </LinearLayout>
 </RelativeLayout>

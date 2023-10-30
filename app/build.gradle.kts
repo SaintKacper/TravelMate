@@ -31,9 +31,13 @@ android {
     }
 }
 
+
 dependencies {
 
     implementation("androidx.appcompat:appcompat:1.6.1")
+
+    implementation("org.osmdroid:osmdroid-android:6.1.17")
+
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment:2.5.3")

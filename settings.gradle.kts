@@ -1,8 +1,10 @@
 pluginManagement {
     repositories {
         google()
+        jcenter()
         mavenCentral()
         gradlePluginPortal()
+        maven(url = "https://clojars.org/repo")
     }
 }
 dependencyResolutionManagement {
