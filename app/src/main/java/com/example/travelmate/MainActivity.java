@@ -42,7 +42,6 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 // Tutaj możesz dodać kod do lokalizacji użytkownika.
-                // Możesz użyć Google Maps API lub innych narzędzi do śledzenia lokalizacji.
             }
         });
 
