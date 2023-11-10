@@ -4,33 +4,42 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
 import android.widget.Button;
+import android.Manifest;
 import android.widget.ImageButton;
 import org.osmdroid.util.GeoPoint;
 import android.widget.LinearLayout;
 import org.osmdroid.api.IMapController;
+import androidx.core.content.ContextCompat;
 import org.osmdroid.views.MapView;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import org.osmdroid.config.Configuration;
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+import android.content.Context;
+import android.preference.PreferenceManager;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends Activity {
-    private MapView mapView;
+public class MainActivity extends AppCompatActivity {
+    private MapView mapView = null;
     private IMapController mapController;
     private Button locateMeButton;
     private ImageButton compassButton;
     private ImageButton menuButton;
     private MyLocationNewOverlay myLocationOverlay;
-    private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
+    private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Context ctx = getApplicationContext();
+        Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
+
         setContentView(R.layout.activity_main);
 
         // Inicjalizacja mapy OpenStreetMap
