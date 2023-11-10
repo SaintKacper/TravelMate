@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     private MyLocationNewOverlay myLocationOverlay;
     private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +61,16 @@ public class MainActivity extends AppCompatActivity {
         locateMeButton = findViewById(R.id.locateMeButton);
         compassButton = findViewById(R.id.compassButton);
         menuButton = findViewById(R.id.menuButton);
+
+        Button setDestinationButton = findViewById(R.id.setDestinationButton);
+
+        setDestinationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Włącz tryb ustawiania miejsca docelowego po kliknięciu przycisku
+                //enableSetDestinationMode();
+            }
+        });
 
         // Skalowanie ikon do rozmiaru przycisków
         compassButton.setScaleType(ImageButton.ScaleType.FIT_CENTER);
