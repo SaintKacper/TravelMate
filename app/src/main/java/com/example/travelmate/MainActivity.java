@@ -42,12 +42,18 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+
         // Inicjalizacja mapy OpenStreetMap
         mapView = findViewById(R.id.mapView);
         mapView.setTileSource(TileSourceFactory.MAPNIK);
 
         mapController = mapView.getController();
         mapController.setZoom(15);  // Ustaw zoom mapy na 15 (zmień na odpowiednią wartość).
+
+
+        // Przyciski zoom i zoom palcami
+        mapView.setBuiltInZoomControls(true);
+        mapView.setMultiTouchControls(true);
 
         // Inicjalizacja przycisków
         locateMeButton = findViewById(R.id.locateMeButton);
