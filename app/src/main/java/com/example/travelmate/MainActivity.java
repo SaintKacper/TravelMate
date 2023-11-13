@@ -2,6 +2,7 @@ package com.example.travelmate;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.Manifest;
@@ -9,6 +10,10 @@ import android.widget.ImageButton;
 import org.osmdroid.util.GeoPoint;
 import android.widget.LinearLayout;
 import org.osmdroid.api.IMapController;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.content.ContextCompat;
 import org.osmdroid.views.MapView;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
@@ -23,6 +28,10 @@ import androidx.core.app.ActivityCompat;
 import android.content.Context;
 import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
     private MapView mapView = null;
@@ -33,7 +42,75 @@ public class MainActivity extends AppCompatActivity {
     private MyLocationNewOverlay myLocationOverlay;
     private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
 
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    ActionBarDrawerToggle drawerToggle;
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (drawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+     menuButton.setOnClickListener(new View.OnClickListener()
+
+    @Override
+    protected void onPostCreate( Bundle MenuItem item) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_main);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
+        drawerLayout.addDrawerListener(drawerToggle);
+        drawerToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.home: {
+                        Toast.makeText(MainActivity.this, "Strona główna", Toast.LENGTH_SHORT).show();
+                    }
+                    case R.id.contact: {
+                        Toast.makeText(MainActivity.this, "Kontakt", Toast.LENGTH_SHORT).show();
+                    }
+                    case R.id.gallery: {
+                        Toast.makeText(MainActivity.this, "Galeria", Toast.LENGTH_SHORT).show();
+                    }
+                    case R.id.about: {
+                        Toast.makeText(MainActivity.this, "O nas", Toast.LENGTH_SHORT).show();
+                    }
+                    case R.id.login: {
+                        Toast.makeText(MainActivity.this, "Zaloguj", Toast.LENGTH_SHORT).show();
+                    }
+                    case R.id.share: {
+                        Toast.makeText(MainActivity.this, "Udostępnij", Toast.LENGTH_SHORT).show();
+                    }
+                    case R.id.rate: {
+                        Toast.makeText(MainActivity.this, "Oceń nas", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                return false;
+            }
+        });
+        // Tutaj możesz dodać kod do rozwijania menu i obsługi dodatkowych opcji.
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START))
+        {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else {
+            super.onBackPressed();
+        }
+     }
+}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,15 +190,7 @@ public class MainActivity extends AppCompatActivity {
                 // Tutaj możesz dodać kod do obsługi kompasu.
             }
         });
-
-        menuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Tutaj możesz dodać kod do rozwijania menu i obsługi dodatkowych opcji.
-            }
-        });
     }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
